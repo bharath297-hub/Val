@@ -161,20 +161,24 @@
 <!-- Romantic Quote Screen -->
 <div id="quoteScreen">
   <div class="quote">
-    “Hey Chandu This Lines Were Made For You ,<br><br>
-గుండెలో వ్యధలనే కాల్చుమంటే ప్రేమ<br>
-రగిలిన సెగలనే ఆర్పునది ఈ ప్రేమ<br>
-ఆదియు అంతము లేని పయనం ప్రేమ<br>
-వేకువై చేరులే చీకటింట్లో ప్రేమ<br>
-విశ్వమంతా ఉన్న ప్రేమ<br>
-ఇరుకు ఎదలో దాచగలమా
-.”
+    “Hey Chandu, these lines were made for you 💖<br><br>
+    గుండెలో వ్యధలనే కాల్చుమంటే ప్రేమ<br>
+    రగిలిన సెగలనే ఆర్పునది ఈ ప్రేమ<br>
+    ఆదియు అంతము లేని పయనం ప్రేమ<br>
+    వేకువై చేరులే చీకటింట్లో ప్రేమ<br>
+    విశ్వమంతా ఉన్న ప్రేమ<br>
+    ఇరుకు ఎదలో దాచగలమా”
   </div>
 
   <div class="signature">
     Bharath ❤️ Chandu
   </div>
 </div>
+
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" loop>
+  <source src="andala_rakshasi.mp3" type="audio/mpeg">
+</audio>
 
 <script>
   let noCount = 0;
@@ -193,6 +197,11 @@
   }
 
   function yesClicked() {
+    // 🎵 Play music (allowed because user clicked)
+    const music = document.getElementById("bgMusic");
+    music.volume = 0.4; // soft romantic volume
+    music.play();
+
     document.body.style.overflow = "hidden";
     document.getElementById("mainContent").classList.add("blur");
     document.getElementById("quoteScreen").style.display = "flex";
@@ -211,7 +220,7 @@
     setTimeout(() => heart.remove(), 6000);
   }
 
-  // soft hearts before Yes
+  // Soft hearts before Yes
   setInterval(createHeart, 900);
 </script>
 
