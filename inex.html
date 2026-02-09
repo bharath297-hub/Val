@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>💖 For You</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+  body {
+    margin: 0;
+    min-height: 100svh;
+    overflow-y: auto;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #fff0f5, #ffe4ec);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 20px 10px;
+  }
+
+  #mainContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  img {
+    max-width: 320px;
+    width: 90%;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    margin: 15px 10px;
+    color: #ff4d6d;
+    font-size: clamp(22px, 5vw, 26px);
+  }
+
+  .buttons {
+    margin-top: 10px;
+  }
+
+  button {
+    padding: 12px 22px;
+    font-size: 18px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  button:hover {
+    transform: scale(1.1);
+  }
+
+  .yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  .no {
+    background: #ccc;
+    color: #333;
+    position: relative;
+  }
+
+  #gentleMsg {
+    display: none;
+    margin-top: 15px;
+    font-size: 16px;
+    color: #b23a48;
+  }
+
+  /* Blur effect */
+  .blur {
+    filter: blur(8px);
+    transition: filter 1.5s ease;
+  }
+
+  /* Fullscreen quote screen */
+  #quoteScreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to bottom, #fde2e4, #fadadd);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 999;
+    padding: 30px 20px;
+  }
+
+  .quote {
+    max-width: 90%;
+    font-size: clamp(18px, 5vw, 22px);
+    color: #b23a48;
+    line-height: 1.7;
+    animation: fadeInSlow 3s ease;
+  }
+
+  .signature {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    color: rgba(0,0,0,0.5);
+    animation: fadeInSlow 5s ease;
+  }
+
+  /* Hearts */
+  .heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.7;
+    z-index: 1000;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 0; }
+    10% { opacity: 0.7; }
+    100% { transform: translateY(-120vh); opacity: 0; }
+  }
+
+  @keyframes fadeInSlow {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+</head>
+
+<body>
+
+<div id="mainContent">
+
+  <img
+    src="https://raw.githubusercontent.com/bharath297-hub/Valentine-/main/F6C3C3FB-EBCF-4360-8BD3-BDCFDB6BA170.jpeg"
+    alt="Valentine">
+
+  <h1>Will you be my Valentine? 💕</h1>
+
+  <div class="buttons">
+    <button class="yes" onclick="yesClicked()">Yes 💖</button>
+    <button class="no" onclick="noClicked()">No 🙈</button>
+  </div>
+
+  <div id="gentleMsg">
+    Hey… don’t tire yourself 😌<br>
+    I just wanted you to know you’re special to me 💕<br>
+    Take your time.
+  </div>
+
+</div>
+
+<!-- Romantic Quote Screen -->
+<div id="quoteScreen">
+  <div class="quote">
+    “Chandu,<br><br>
+    let’s choose each other every day.<br>
+    Through dreams and doubts,<br>
+    through silence and laughter.<br><br>
+    Let’s grow, support, and walk forward<br>
+    hand in hand —<br>
+    not because life is easy,<br>
+    but because love makes it worth it.”
+  </div>
+
+  <div class="signature">
+    Bharath ❤️ Chandu
+  </div>
+</div>
+
+<script>
+  let noCount = 0;
+
+  function noClicked() {
+    noCount++;
+
+    const btn = document.querySelector('.no');
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 200 - 100;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+
+    if (noCount >= 10) {
+      document.getElementById("gentleMsg").style.display = "block";
+    }
+  }
+
+  function yesClicked() {
+    document.body.style.overflow = "hidden";
+    document.getElementById("mainContent").classList.add("blur");
+    document.getElementById("quoteScreen").style.display = "flex";
+
+    setInterval(createHeart, 180);
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.innerText = Math.random() > 0.5 ? '💖' : '💞';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (Math.random() * 15 + 18) + 'px';
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 6000);
+  }
+
+  // soft hearts before Yes
+  setInterval(createHeart, 900);
+</script>
+
+</body>
+</html>
